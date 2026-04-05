@@ -1,0 +1,42 @@
+# Default values for order-db PostgreSQL
+# This is a YAML-formatted file.
+
+postgres:
+  mode: postgres
+
+image:
+  repository: postgres
+  pullPolicy: IfNotPresent
+  tag: "17"
+
+port: 5434
+
+database: orderdb
+username: postgres
+password: password  # OVERRIDE VIA CLI/CI OR SECRET INJECTION
+
+persistence:
+  enabled: true
+  storageClass: microk8s-hostpath
+  accessModes: ReadWriteOnce
+  size: 1Gi
+
+resources:
+  requests:
+    memory: "256Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
+service:
+  type: ClusterIP
+
+probes:
+  liveness:
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    failureThreshold: 3
+  readiness:
+    initialDelaySeconds: 10
+    periodSeconds: 5
+    failureThreshold: 3
