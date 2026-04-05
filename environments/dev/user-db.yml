@@ -1,0 +1,26 @@
+# Dev overrides for user-db
+# Usage: helm install user-db ./charts/db/user-db -n quickkart-dev -f environments/dev/user-db.yml
+
+image:
+  repository: postgres
+  pullPolicy: IfNotPresent
+  tag: "17"
+
+port: 5432
+
+database: userdb
+username: postgres
+password: password
+
+persistence:
+  enabled: true
+  storageClass: microk8s-hostpath
+  accessModes: ReadWriteOnce
+  size: 512Mi
+
+resources:
+  requests:
+    memory: "128Mi"
+  limits:
+    cpu: "250m"
+    memory: "256Mi"

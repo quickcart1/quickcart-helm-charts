@@ -1,0 +1,46 @@
+# Dev overrides for inventory-service
+# Usage: helm install inventory-service ./charts/inventory-service -n quickkart-dev -f environments/dev/inventory-service.yml
+
+replicaCount: 1
+
+image:
+  repository: rickdevma100/quickkart-inventory-service
+  pullPolicy: IfNotPresent
+  tag: "1.0.0"
+
+database:
+  host: inventory-db-postgres
+  port: 5432
+  name: inventorydb
+  username: postgres
+  password: password
+
+service:
+  type: ClusterIP
+  port: 8085
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8085
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 8085
+  initialDelaySeconds: 10
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 3

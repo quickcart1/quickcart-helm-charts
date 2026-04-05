@@ -1,4 +1,4 @@
-# Default values for cart-db PostgreSQL
+# Default values for payment-db PostgreSQL
 # This is a YAML-formatted file.
 
 postgres:
@@ -11,7 +11,7 @@ image:
 
 port: 5432
 
-database: cartdb
+database: paymentdb
 username: postgres
 password: password  # OVERRIDE VIA CLI/CI OR SECRET INJECTION
 

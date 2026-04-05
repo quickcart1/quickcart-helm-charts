@@ -1,12 +1,18 @@
 # Production overrides for payment-service
 # Usage: helm install payment-service ./charts/payment-service -n quickkart -f environments/prod/payment-service.yml
 
-replicaCount: 2
+replicaCount: 1
 
 image:
   repository: rickdevma100/quickkart-payment-service
   pullPolicy: Always
   tag: "1.0.0"
+database:
+  host: payment-db-postgres
+  port: 5432
+  name: paymentdb
+  username: postgres
+  password: password
 
 service:
   type: ClusterIP
@@ -40,7 +46,7 @@ readinessProbe:
 
 autoscaling:
   enabled: true
-  minReplicas: 3
-  maxReplicas: 10
+  minReplicas: 1
+  maxReplicas: 3
   targetCPUUtilizationPercentage: 70
   targetMemoryUtilizationPercentage: 80

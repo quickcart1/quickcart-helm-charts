@@ -1,0 +1,46 @@
+# Dev overrides for product-service
+# Usage: helm install product-service ./charts/product-service -n quickkart-dev -f environments/dev/product-service.yml
+
+replicaCount: 2
+
+image:
+  repository: rickdevma100/quickkart-product-service
+  pullPolicy: IfNotPresent
+  tag: "1.0.0"
+
+database:
+  host: product-db-postgres
+  port: 5432
+  name: productdb
+  username: postgres
+  password: password
+
+service:
+  type: ClusterIP
+  port: 8082
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+livenessProbe:
+  httpGet:
+    path: /actuator/health
+    port: 8082
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /actuator/health
+    port: 8082
+  initialDelaySeconds: 15
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 3

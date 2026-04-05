@@ -7,7 +7,7 @@ replicaCount: 1
 
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
-  repository: nginx
+  repository: rickdevma100/quickkart-cart-service
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
@@ -22,7 +22,7 @@ fullnameOverride: ""
 # Database connection configuration
 database:
   host: cart-db-postgres
-  port: 5436
+  port: 5432
   name: cartdb
   username: postgres
   password: password

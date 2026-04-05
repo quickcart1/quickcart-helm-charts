@@ -1,0 +1,26 @@
+# Dev overrides for payment-db
+# Usage: helm install payment-db ./charts/db/payment-db -n quickkart-dev -f environments/dev/payment-db.yml
+
+image:
+  repository: postgres
+  pullPolicy: IfNotPresent
+  tag: "17"
+
+port: 5432
+
+database: paymentdb
+username: postgres
+password: password
+
+persistence:
+  enabled: true
+  storageClass: microk8s-hostpath
+  accessModes: ReadWriteOnce
+  size: 512Mi
+
+resources:
+  requests:
+    memory: "128Mi"
+  limits:
+    cpu: "250m"
+    memory: "256Mi"

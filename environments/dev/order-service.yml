@@ -1,0 +1,46 @@
+# Dev overrides for order-service
+# Usage: helm install order-service ./charts/order-service -n quickkart-dev -f environments/dev/order-service.yml
+
+replicaCount: 1
+
+image:
+  repository: rickdevma100/quickkart-order-service
+  pullPolicy: IfNotPresent
+  tag: "1.0.0"
+
+database:
+  host: order-db-postgres
+  port: 5432
+  name: orderdb
+  username: postgres
+  password: password
+
+service:
+  type: ClusterIP
+  port: 8083
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+livenessProbe:
+  httpGet:
+    path: /actuator/health
+    port: 8083
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /actuator/health
+    port: 8083
+  initialDelaySeconds: 15
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 3

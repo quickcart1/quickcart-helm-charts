@@ -1,0 +1,26 @@
+# Dev overrides for cart-db
+# Usage: helm install cart-db ./charts/db/cart-db -n quickkart-dev -f environments/dev/cart-db.yml
+
+image:
+  repository: postgres
+  pullPolicy: IfNotPresent
+  tag: "17"
+
+port: 5432
+
+database: cartdb
+username: postgres
+password: password
+
+persistence:
+  enabled: true
+  storageClass: microk8s-hostpath
+  accessModes: ReadWriteOnce
+  size: 512Mi
+
+resources:
+  requests:
+    memory: "128Mi"
+  limits:
+    cpu: "250m"
+    memory: "256Mi"

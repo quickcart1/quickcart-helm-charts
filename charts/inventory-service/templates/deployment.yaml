@@ -45,13 +45,9 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           env:
-            - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://{{ .Values.database.host }}:{{ .Values.database.port }}/{{ .Values.database.name }}
-            - name: SPRING_DATASOURCE_DRIVER
-              value: org.postgresql.Driver
-            - name: SPRING_DATASOURCE_USERNAME
-              value: {{ .Values.database.username }}
-            - name: SPRING_DATASOURCE_PASSWORD
+            - name: DATABASE_URL
+              value: postgresql://{{ .Values.database.username }}:$(POSTGRES_PASSWORD)@{{ .Values.database.host }}:{{ .Values.database.port }}/{{ .Values.database.name }}
+            - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.database.host }}-secret

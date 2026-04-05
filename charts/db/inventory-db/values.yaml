@@ -9,7 +9,7 @@ image:
   pullPolicy: IfNotPresent
   tag: "17"
 
-port: 5437
+port: 5432
 
 database: inventorydb
 username: postgres

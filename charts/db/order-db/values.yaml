@@ -9,7 +9,7 @@ image:
   pullPolicy: IfNotPresent
   tag: "17"
 
-port: 5434
+port: 5432
 
 database: orderdb
 username: postgres
