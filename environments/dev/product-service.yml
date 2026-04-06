@@ -1,7 +1,7 @@
 # Dev overrides for product-service
 # Usage: helm install product-service ./charts/product-service -n quickkart-dev -f environments/dev/product-service.yml
 
-replicaCount: 2
+replicaCount: 1
 
 image:
   repository: rickdevma100/quickkart-product-service
@@ -36,11 +36,4 @@ livenessProbe:
   timeoutSeconds: 5
   failureThreshold: 3
 
-readinessProbe:
-  httpGet:
-    path: /actuator/health
-    port: 8082
-  initialDelaySeconds: 15
-  periodSeconds: 5
-  timeoutSeconds: 3
-  failureThreshold: 3
+
