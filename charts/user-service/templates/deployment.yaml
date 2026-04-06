@@ -47,7 +47,7 @@ spec:
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://{{ .Values.database.host }}:{{ .Values.database.port }}/{{ .Values.database.name }}
-            - name: SPRING_DATASOURCE_DRIVER
+            - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
               value: org.postgresql.Driver
             - name: SPRING_DATASOURCE_USERNAME
               value: {{ .Values.database.username }}
