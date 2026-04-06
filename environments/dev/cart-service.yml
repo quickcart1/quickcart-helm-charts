@@ -27,13 +27,6 @@ resources:
     cpu: 100m
     memory: 256Mi
 
-livenessProbe:
-  httpGet:
-    path: /actuator/health
-    port: 8084
-  initialDelaySeconds: 30
-  periodSeconds: 10
-  timeoutSeconds: 5
-  failureThreshold: 3
+
 
 
