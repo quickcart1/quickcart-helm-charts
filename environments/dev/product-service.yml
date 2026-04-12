@@ -6,7 +6,7 @@ replicaCount: 1
 image:
   repository: rickdevma100/quickkart-product-service
   pullPolicy: IfNotPresent
-  tag: "1.0.1"
+  tag: "1.0.2"
 
 database:
   host: product-db-postgres
