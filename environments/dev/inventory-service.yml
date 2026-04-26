@@ -36,14 +36,14 @@ autoscaling:
 
 livenessProbe:
   httpGet:
-    path: /actuator/health/liveness
+    path: /health
     port: http
   initialDelaySeconds: 40
   periodSeconds: 15
 
 readinessProbe:
   httpGet:
-    path: /actuator/health/readiness
+    path: /health
     port: http
   initialDelaySeconds: 40
   periodSeconds: 15
