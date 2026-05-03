@@ -9,8 +9,19 @@ image:
   tag: "1.0.1"
 
 service:
-  type: NodePort
+  type: ClusterIP
   port: 80
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  hosts:
+    - host: quickcart.local
+      paths:
+        - path: /
+          pathType: Prefix
 
 resources:
   limits:
