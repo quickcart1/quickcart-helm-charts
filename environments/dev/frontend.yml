@@ -14,7 +14,7 @@ service:
 
 ingress:
   enabled: true
-  className: nginx
+  className: public
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
   hosts:
